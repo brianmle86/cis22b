@@ -9,25 +9,27 @@
 #include <fstream>
 #include <vector>
 #include <algorithm>
+#include <cstdlib>
+using namespace std;
 
-void openFile(ifstream &);
+void openFile(ifstream &, string &);
 void closeFile(ifstream &);
-void getScores(ifstream &, vector<int> &);
+void getScores(ifstream &, vector<int> &, int &);
 void sortVector(vector<int> &);
 double getAvg(vector<int> &);
 double getMedian(vector<int> &);
-void printInfo(vector<int> &, double &, int &) {
+void printInfo(vector<int> &, double &, double &);
 
 int main() {
     ifstream inFile;
     string filename = "lab1.txt";
     vector<int> scores;
-    double avg;
-    int median;
+    double avg, median;
+    int score;
 
     openFile(inFile, filename);
     
-    getScores(inFile, scores);
+    getScores(inFile, scores, score);
 
     sortVector(scores);
 
@@ -35,7 +37,7 @@ int main() {
     median = getMedian(scores);
     
     closeFile(inFile);
-    printInfo();
+    printInfo(scores, avg, median);
     
     return 0;
 }
@@ -54,10 +56,11 @@ void closeFile(ifstream &inFile) {
     inFile.close();
 }
 
-void getScores(ifstream &inFile, vector<int> &vector) {
+void getScores(ifstream &inFile, vector<int> &vector, int &score) {
     while(inFile >> score) {
         vector.push_back(score); //create unsorted vector
     }
+    inFile.close();
 }
 
 void sortVector(vector<int> &vector) {
@@ -85,11 +88,19 @@ double getMedian(vector<int> &vector) {
         n2 = n1 + 1;
         median = (vector[n1] + vector[n2]) / 2;
     }
+    return median;
 }
 
-void printInfo(vector<int> &vector, &avg, &median) {
-    for(int score : vector)
+void printInfo(vector<int> &vector, double &avg, double &median) {
+    int i = 0;
+    for(int score : vector) {
         cout << score << " ";
+        if(i > 10) {
+            cout << endl;
+            i = 0;
+        }
+        i++;
+    }
     cout << endl;
     cout << "The average score is " << avg << endl;
     cout << "The median score is " << median << endl;
