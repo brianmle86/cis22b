@@ -69,7 +69,7 @@ void openFile(ifstream &inFile, string &filename) {
  */
 void getScores(ifstream &inFile, vector<int> &vector, int &score) {
     while(inFile >> score) {
-        vector.push_back(score); //create unsorted vector
+        vector.push_back(score);
     }
     inFile.close();
 }
@@ -79,7 +79,7 @@ void getScores(ifstream &inFile, vector<int> &vector, int &score) {
  into ascending order.
  */
 void sortVector(vector<int> &vector) {
-    sort(vector.begin(), vector.end()); //sort ascending order
+    sort(vector.begin(), vector.end());
 }
 
 /**
@@ -103,9 +103,9 @@ double getMedian(vector<int> &vector) {
     double median;
     int count = vector.size();
     
-    if(count % 2 != 0)
+    if(count % 2 != 0) //if count is odd
         median = vector[(count / 2) + 1]; //integer division
-    else {
+    else { //if count is even
         int n1, n2;
         n1 = count / 2;
         n2 = n1 + 1;
@@ -120,7 +120,7 @@ double getMedian(vector<int> &vector) {
  and median value of the values stored inside the vector.
  */
 void printInfo(vector<int> &vector, double &avg, double &median) {
-    int i = 0;
+    int i = 0; //keeps track of the # of scores on a line
     for(int score : vector) {
         if(i > 9) {
             cout << endl;
