@@ -20,7 +20,7 @@
 using namespace std;
 
 void openFile(ifstream &, string &);
-void getScores(ifstream &, vector<int> &, int &);
+void getScores(ifstream &, vector<int> &, vector<int> &, int &);
 void sortVector(vector<int> &);
 double getAvg(vector<int> &);
 double getMedian(vector<int> &);
@@ -30,18 +30,19 @@ int main() {
     ifstream inFile;
     string filename = "lab1.txt";
     vector<int> scores;
+    vector<int> finalscores;
     double avg, median;
     int score;
 
     openFile(inFile, filename);
-    getScores(inFile, scores, score);
-    sortVector(scores);
+    getScores(inFile, scores, finalscores, score);
+    sortVector(finalscores);
 
-    avg = getAvg(scores);
-    median = getMedian(scores);
-    
-    printInfo(scores, avg, median);
-    
+
+    avg = getAvg(finalscores);
+    median = getMedian(finalscores);
+    printInfo(finalscores, avg, median);
+
     return 0;
 }
 
@@ -67,9 +68,17 @@ void openFile(ifstream &inFile, string &filename) {
  still be read. The scores are stored inside a vector.
  Once the file is completely read, the input file is closed.
  */
-void getScores(ifstream &inFile, vector<int> &vector, int &score) {
+void getScores(ifstream &inFile, vector<int> &vector1, vector<int> &vector2, int &score) {
+    int scorecount = 0;
     while(inFile >> score) {
-        vector.push_back(score);
+        if(scorecount > 10) {
+            double avg = getAvg(vector1);
+            vector2.push_back(avg);
+            vector1.clear();
+            scorecount = 0;
+        }
+        vector1.push_back(score);
+        scorecount++;
     }
     inFile.close();
 }
@@ -133,7 +142,6 @@ void printInfo(vector<int> &vector, double &avg, double &median) {
     cout << "The average score is " << avg << endl;
     cout << "The median score is " << median << endl;
 }
-
 /**
 OUTPUT:
 60 60 61 62 63 64 64 65 65 67
