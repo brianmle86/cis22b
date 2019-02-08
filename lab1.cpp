@@ -49,7 +49,7 @@ int main() {
 /**
  This function attempts to open an input file
  with a default filename(lab1.txt). If it is
- unable to open that file, it prompts the
+estunable to open that file, it prompts the
  user to input a filename until it is able to
  be opened.
  */
