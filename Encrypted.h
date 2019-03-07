@@ -1,5 +1,5 @@
-
-
+#ifndef Encrypted_h
+#define Encrypted_h
 class Encrypted {
     private:
         char *message;
@@ -7,5 +7,11 @@ class Encrypted {
         bool status;
     public:
         Encrypted();
-        Encrypted()
+        Encrypted(string filename, int max)
+        bool isEmpty();
+        void decode();
+        void print();
+        ~Encrypted();
 };
+
+#endif
