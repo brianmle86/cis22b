@@ -1,4 +1,9 @@
+/**
+ CIS22B
+ Brian Le
 
+ This file contains the Player class.
+ */
 #include "LoShuSquare.h"
 #include <string>
 #include <iostream>
@@ -9,9 +14,8 @@
 using namespace std;
 
 class Player {
-    protected:
+    private:
         LoShuSquare game;
-        string name;
     public:
         Player(LoShuSquare game);
         ~Player();
@@ -47,7 +51,7 @@ Player::Player(LoShuSquare game) {
     while(input == 'Y' || input == 'y') {
         cout << "Enter row, column, and value: ";
         cin >> row >> column >> value;
-        row -= 1;
+        row -= 1; //we need the index, so - 1
         column -= 1;
         game.fill(row, column, value);
         

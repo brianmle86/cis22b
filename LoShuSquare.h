@@ -1,4 +1,9 @@
+/**
+ CIS22B
+ Brian Le
 
+ This file contains the LoShuSquare class.
+ */
 #ifndef LoShuSquare_h
 #define LoShuSquare_h
 #include <iostream>
@@ -12,8 +17,8 @@ class LoShuSquare {
         LoShuSquare();
         ~LoShuSquare();
         void fill(int row, int col, int num);
-        bool checkRow(int array[][3]);
-        bool checkCol(int array[][3]);
+        bool checkRow(int array[][3]); //all the "check" functions return true        
+        bool checkCol(int array[][3]); //if ALL of the rows, columns, or diagonals add up to 15.
         bool checkDiag(int array[][3]);
         bool isLoShuSquare();
         void printGrid();
@@ -75,7 +80,7 @@ bool LoShuSquare::checkDiag(int array[][3]) {
         sum = 0;
     
     sum = array[0][2] + array[1][1] + array[2][0];
-    if(sum != magicSum)
+    if(sum != magicSum) //check other "cross"
         return false;
     else
         return true;
