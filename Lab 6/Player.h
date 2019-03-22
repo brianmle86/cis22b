@@ -40,11 +40,12 @@ Player::Player(LoShuSquare game) {
             cin >> number;
             game.fill(i, j, number);
             cout << endl;
+            game.printGrid();
         }
     }
-    
+    cout << "=============================================\n";
+   
     game.printGrid();
-    
     cout << "Would you like to change a specific value\n"
          << "in the grid? (y/n): ";
     cin >> input;
@@ -54,7 +55,7 @@ Player::Player(LoShuSquare game) {
         row -= 1; //we need the index, so - 1
         column -= 1;
         game.fill(row, column, value);
-        
+        cout << endl;
         game.printGrid();
         
         cout << "Change another value? (y/n): ";
