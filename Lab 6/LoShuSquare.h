@@ -33,11 +33,11 @@ LoShuSquare::LoShuSquare() {
 
 LoShuSquare::~LoShuSquare() {};
 
-void LoShuSquare::fill(int row, int col, int num) {
+inline void LoShuSquare::fill(int row, int col, int num) {
     grid[row][col] = num;
 }
 
-bool LoShuSquare::checkRow(int array[][3]) {
+inline bool LoShuSquare::checkRow(int array[][3]) {
     int sum = 0;
     for(int i = 0; i < 3; i++) {
         for(int j = 0; j < 3; j++)
@@ -51,7 +51,7 @@ bool LoShuSquare::checkRow(int array[][3]) {
     return true; //all rows sum to 15, so return true
 }
 
-bool LoShuSquare::checkCol(int array[][3]) {
+inline bool LoShuSquare::checkCol(int array[][3]) {
     int sum = 0;
     for(int j = 0; j < 3; j++) {
         for(int i = 0; i < 3; i++)
@@ -65,7 +65,7 @@ bool LoShuSquare::checkCol(int array[][3]) {
     return true;
 }
 
-bool LoShuSquare::checkDiag(int array[][3]) {
+inline bool LoShuSquare::checkDiag(int array[][3]) {
     int sum = 0;
     for(int i = 0; i < 3; i++) {
         for(int j = 0; j < 3; j++) {
@@ -86,22 +86,23 @@ bool LoShuSquare::checkDiag(int array[][3]) {
         return true;
 }
 
-bool LoShuSquare::isLoShuSquare() {
+inline bool LoShuSquare::isLoShuSquare() {
     if(checkRow(grid) && checkCol(grid) && checkDiag(grid))
         return true;
     else
         return false;
 }
 
-void LoShuSquare::printGrid() {
-    cout << "==================================";
+inline void LoShuSquare::printGrid() {
+    cout << "---------";
     for(int i = 0; i < 3; i++) {
-        cout << endl;
+        cout << endl << "| ";
         for(int j = 0; j < 3; j++) {
             cout << grid[i][j] << " ";
         }
+        cout << "|";
     }
-    cout << endl << "==================================\n";
+    cout << endl << "---------\n";
 }
 
 #endif
